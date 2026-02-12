@@ -1,0 +1,292 @@
+﻿@import "tailwindcss";
+
+@theme {
+  /* --- Typography --- */
+  --font-sans: var(--font-main);
+  --font-weight-h1: var(--weight-h1);
+  --font-weight-h2: var(--weight-h2);
+
+  /* --- Animation & Motion --- */
+  --animate-pulse-slow: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --duration-theme: var(--speed);
+  --ease-main: var(--ease);
+  
+  /* --- Iconography --- */
+  --icon-stroke: var(--icon-w);
+
+  /* --- Spacing & Layout --- */
+  --spacing-base: calc(0.25rem * var(--density));
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --border-width-default: var(--border-width);
+
+  /* --- Colors --- */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-muted: var(--muted);
+
+  /* --- Shadows & Interaction --- */
+  --shadow-main: var(--shadow);
+  --hover-transform: var(--h-transform);
+  --active-transform: var(--a-transform);
+  --hover-shadow-extra: var(--h-shadow);
+}
+
+/* --- GLOBAL BASE STYLES --- */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color var(--duration-theme) var(--ease-main), color var(--duration-theme) var(--ease-main), border-color var(--duration-theme) var(--ease-main);
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+}
+
+/* --- THEME DEFINITIONS --- */
+
+/* DEFAULT: Modern/Professional */
+:root {
+  --density: 1;
+  --speed: 300ms;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --icon-w: 2px;
+  --h-transform: scale(1.02);
+  --a-transform: scale(0.98);
+  --h-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --font-main: "Inter", system-ui, sans-serif;
+  --weight-h1: 900;
+  --weight-h2: 700;
+  --background: #ffffff;
+  --foreground: #020817;
+  --card: #ffffff;
+  --card-foreground: #020817;
+  --brand: #2563eb;
+  --brand-foreground: #ffffff;
+  --border: #e2e8f0;
+  --ring: #3b82f6;
+  --muted: #f1f5f9;
+  --radius: 0.6rem;
+  --border-width: 1px;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+/* DARK MODE OVERRIDE */
+[data-mode="dark"] {
+  --background: #020817;
+  --foreground: #f8fafc;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --brand: #3b82f6;
+  --brand-foreground: #ffffff;
+  --border: #1e293b;
+  --muted: #1e293b;
+  --ring: #1d4ed8;
+  --shadow: 0 0 transparent;
+}
+
+/* NEOBRUTALISM — harsh, mechanical, no fluidity */
+[data-theme="neo"] {
+  --ease: steps(4, end);
+  --speed: 150ms;
+  --icon-w: 3px;
+  --h-transform: translate(-6px, -6px);
+  --a-transform: translate(2px, 2px);
+  --h-shadow: 14px 14px 0px 0px #000000;
+  --weight-h1: 900;
+  --weight-h2: 800;
+  --background: #fdfcf0;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --brand: #a3e635;
+  --brand-foreground: #000000;
+  --border: #000000;
+  --muted: #e5e7eb;
+  --ring: #000000;
+  --radius: 0rem;
+  --border-width: 4px;
+  --shadow: 8px 8px 0px 0px #000000;
+}
+
+[data-mode="dark"][data-theme="neo"] {
+  --background: #0a0a0a;
+  --foreground: #e6ff00;
+  --card: #1a1a1a;
+  --card-foreground: #e6ff00;
+  --border: #e6ff00;
+  --brand: #e6ff00;
+  --brand-foreground: #0a0a0a;
+  --muted: #2a2a2a;
+  --ring: #e6ff00;
+  --shadow: 8px 8px 0px 0px #e6ff00;
+  --h-shadow: 14px 14px 0px 0px #e6ff00;
+}
+
+/* GLASSMORPHISM — slow float, dreamy, ethereal */
+[data-theme="glass"] {
+  --speed: 600ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --h-transform: translateY(-8px) scale(1.02);
+  --a-transform: translateY(-2px) scale(0.98);
+  --h-shadow: 0 25px 50px -5px rgba(0, 0, 0, 0.4);
+  --weight-h1: 800;
+  --weight-h2: 600;
+  --background: #030712;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #ffffff;
+  --brand: #f472b6;
+  --brand-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: rgba(255, 255, 255, 0.05);
+  --ring: #f472b6;
+  --radius: 1.5rem;
+  --border-width: 1px;
+  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(76, 29, 149, 0.4) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(190, 24, 93, 0.4) 0, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* APPLE — restrained, press-only, no hover lift */
+[data-theme="apple"] {
+  --speed: 350ms;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --icon-w: 1.5px;
+  --h-transform: none;
+  --a-transform: scale(0.96);
+  --h-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --weight-h1: 600;
+  --weight-h2: 500;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --brand: #0071e3;
+  --brand-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --muted: #f5f5f7;
+  --radius: 0.75rem;
+  --border-width: 0.5px; 
+  --shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+[data-mode="dark"][data-theme="apple"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1c1c1e;
+  --card-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: #1c1c1e;
+}
+
+/* DYNAMIC — playful tilt, bouncy */
+[data-theme="dynamic"] {
+  --hue: 250; 
+  --chroma: 0.15;
+  --speed: 350ms;
+  --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --h-transform: rotate(1.5deg) scale(1.04);
+  --a-transform: rotate(-0.5deg) scale(0.96);
+  --h-shadow: 0 16px 30px -6px oklch(0.5 0.15 var(--hue) / 0.4);
+  --brand: oklch(0.6 var(--chroma) var(--hue));
+  --brand-foreground: oklch(0.99 0.01 var(--hue));
+  --background: oklch(0.98 0.01 var(--hue));
+  --foreground: oklch(0.1 0.02 var(--hue));
+  --card: oklch(1 0.005 var(--hue));
+  --card-foreground: oklch(0.1 0.02 var(--hue));
+  --border: oklch(0.6 0.1 var(--hue) / 0.2);
+  --muted: oklch(0.95 0.02 var(--hue));
+  --ring: var(--brand);
+  --shadow: 0 10px 30px -10px oklch(0.5 var(--chroma) var(--hue) / 0.3);
+  --radius: 1rem;
+  --border-width: 1.5px;
+}
+
+[data-mode="dark"][data-theme="dynamic"] {
+  --background: oklch(0.15 0.02 var(--hue));
+  --foreground: oklch(0.9 0.01 var(--hue));
+  --card: oklch(0.2 0.02 var(--hue));
+  --card-foreground: oklch(0.9 0.01 var(--hue));
+  --border: oklch(0.9 0.01 var(--hue) / 0.1);
+  --muted: oklch(0.25 0.02 var(--hue));
+}
+
+/* PROSE — warm stillness, no spatial movement, warmth-based interaction */
+[data-theme="prose"] {
+  --speed: 500ms;
+  --ease: cubic-bezier(0.45, 0, 0.15, 1);
+  --icon-w: 1.75px;
+  --h-transform: none;
+  --a-transform: scale(0.98);
+  --h-shadow: 0 4px 16px -2px rgba(139, 104, 71, 0.15);
+  --weight-h1: 700;
+  --weight-h2: 600;
+  --font-main: "Georgia", "Times New Roman", serif;
+  --background: #f7f4ef;
+  --foreground: #32292a;
+  --card: #fefcf8;
+  --card-foreground: #32292a;
+  --brand: #8b6847;
+  --brand-foreground: #fefcf8;
+  --border: #e2dbd2;
+  --muted: #eeebe4;
+  --ring: #8b6847;
+  --radius: 0.5rem;
+  --border-width: 1px;
+  --shadow: 0 1px 4px -1px rgba(50, 41, 42, 0.08);
+}
+
+[data-mode="dark"][data-theme="prose"] {
+  --background: #1c1917;
+  --foreground: #e7e0d8;
+  --card: #262220;
+  --card-foreground: #e7e0d8;
+  --brand: #c49a6c;
+  --brand-foreground: #1c1917;
+  --border: #3d3632;
+  --muted: #302b27;
+  --ring: #c49a6c;
+  --h-shadow: 0 4px 16px -2px rgba(196, 154, 108, 0.2);
+  --shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* SURFACE CONTEXTS */
+.surface-dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #f8fafc;
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: rgba(255, 255, 255, 0.1);
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+.surface-brand {
+  --background: var(--brand);
+  --foreground: var(--brand-foreground);
+  --card: rgba(255, 255, 255, 0.1);
+  --card-foreground: var(--brand-foreground);
+  --border: rgba(255, 255, 255, 0.2);
+  --muted: rgba(0, 0, 0, 0.1);
+  background-color: var(--brand);
+  color: var(--brand-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --speed: 0ms !important; }
+}
